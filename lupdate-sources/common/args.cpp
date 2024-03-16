@@ -142,7 +142,7 @@ Options parseCommandLineArgs(int argc, char **argv){
                 }
             }
         }
-        else if(arg == "-version"){
+        else if(arg == "-version" || arg == "-v"){
             showVersion();
             result.success = true;
             return result;

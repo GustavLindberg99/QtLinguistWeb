@@ -24,6 +24,8 @@ public:
     Code(const QByteArray &contents, const QString &filePath, int lineOffset);
     Code(QFile &file);    //The file must be opened first
 
+    virtual ~Code() = default;
+
     QString contents() const;
     QString filePath() const;
     int lineNumber(int characterNumber) const;
