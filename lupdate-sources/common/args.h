@@ -5,7 +5,7 @@
 #include <QString>
 #include "tsfile.h"
 
-struct Options{
+struct Options final{
     #ifdef LUPDATE_JS
         QSet<QString> htmlExtensions{"html", "htm"};
         QSet<QString> jsExtensions{"js"};
