@@ -4,6 +4,11 @@ Qt Linguist for Web is a port of Qt Linguist's tool chain for JavaScript/PHP bas
 
 Note that this is only a port of translation-related methods, not of the entire Qt framework. If you want to use the entire Qt framework in web projects, you should have a look at [Qt for WebAssembly](https://doc.qt.io/qt-6/wasm.html) instead.
 
+The contents of this repository is under multiple licenses:
+- qtranslator.js and qtranslator.php are licensed under the [LGPL 3.0](https://github.com/GustavLindberg99/QtLinguistWeb/blob/main/LICENSE-LGPL)
+- Lexbor was written by lexborisov and is licensed under the Apache 2.0 license, and Qt Linguist was written by Qt and is licensed under the GPL 3.0
+- Everything else in this repository is licensed under the [GPL 3.0](https://github.com/GustavLindberg99/QtLinguistWeb/blob/main/LICENSE-GPL)
+
 ## Contents
 - [Setup](#setup)
     - [Installing lupdate-\* and Qt Linguist on Windows](#installing-lupdate--and-qt-linguist-on-windows)
