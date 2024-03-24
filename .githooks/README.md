@@ -1,0 +1,1 @@
+This folder contains a [git hook](https://www.atlassian.com/git/tutorials/git-hooks) which is used to automatically minify qtranslator.js whenever a change is committed to git. To enable it locally on your computer, copy the contents of this folder to `.git/hooks`. For it to work, you also need to install [UglifyJS](https://github.com/mishoo/UglifyJS).
