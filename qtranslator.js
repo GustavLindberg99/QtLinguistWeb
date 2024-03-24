@@ -1,5 +1,5 @@
 /*
-* qtranslator.js version 1.0.1 by Gustav Lindberg
+* qtranslator.js version 1.0.2 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
@@ -49,10 +49,6 @@ export class QTranslator extends QObject{
     }
 
     async load(filePath /*: String */) /*: Boolean */ {
-        if(document.readyState === "complete"){
-            console.warn("Do not call QTranslator.load after document is finished loading, since it uses synchronous AJAX requests which can make the page slow.");
-        }
-
         const xhr = new XMLHttpRequest();
         xhr.open("GET", filePath, true);
         xhr.send(null);
@@ -124,7 +120,7 @@ export class QTranslator extends QObject{
 
     translate(context /*: String */, sourceText /*: String */, disambiguation /*: String | null */ = null, n /*: Number | null */ = null) /*: String */ {
         if(this.isEmpty()){
-            console.warn("Calling translate on an empty QTranslator. Did you forget to call translator.load()?");
+            console.warn("Calling translate on an empty QTranslator. Did you forget to call translator.load() or did you call it without await?");
         }
 
         const translation = (this.#translationsByContext.get(context) ?? []).find(it =>
