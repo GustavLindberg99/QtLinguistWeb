@@ -1,0 +1,11 @@
+#!/bin/sh
+if which uglifyjs > /dev/null; then
+    mkdir min 2> /dev/null
+    uglifyjs --mangle --comments '/^:/' qtranslator.js -o min/qtranslator-v1.min.js
+    git add min/qtranslator-v1.min.js
+else
+    echo "Cannot minify file: uglifyjs is not installed. To install it, run the following commands:"
+    echo "sudo apt install npm"
+    echo "sudo npm install -g uglify-js"
+    exit 1
+fi

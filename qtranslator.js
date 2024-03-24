@@ -1,5 +1,5 @@
 /*
-* qtranslator.js version 1.0.0 by Gustav Lindberg
+* qtranslator.js version 1.0.1 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
@@ -48,14 +48,17 @@ export class QTranslator extends QObject{
         return this.#language;
     }
 
-    load(filePath /*: String */) /*: Boolean */ {
+    async load(filePath /*: String */) /*: Boolean */ {
         if(document.readyState === "complete"){
             console.warn("Do not call QTranslator.load after document is finished loading, since it uses synchronous AJAX requests which can make the page slow.");
         }
 
         const xhr = new XMLHttpRequest();
-        xhr.open("GET", filePath, false);
+        xhr.open("GET", filePath, true);
         xhr.send(null);
+        await new Promise(resolve => {
+            xhr.onload = xhr.onerror = resolve;
+        });
         if(Math.floor(xhr.status / 100) !== 2){
             console.error("Could not load file " + filePath + ": Server responded with code " + xhr.status);
             return false;
