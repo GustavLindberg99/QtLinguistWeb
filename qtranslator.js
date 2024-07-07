@@ -1,11 +1,11 @@
 /*
-* qtranslator.js version 1.0.2 by Gustav Lindberg
+* qtranslator.js version 1.0.3 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
 "use strict";
 
-import typechecked from "https://gustavlindberg99.github.io/Typecheck.js/typecheck.js";
+import typechecked from "https://gustavlindberg99.github.io/Typecheck.js/min/typecheck-v1.min.js";
 
 const translators = [];
 
