@@ -1,5 +1,5 @@
 /*
-* qtranslator.js version 1.0.3 by Gustav Lindberg
+* qtranslator.js version 1.0.4 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
@@ -60,13 +60,14 @@ export class QTranslator extends QObject{
             return false;
         }
 
-        const xml = xhr.responseXML;
-        if(xml == null){
+        const xml = new DOMParser().parseFromString(xhr.responseText, "text/xml");
+        const error = xml.querySelector("parsererror > div")?.textContent ?? null;
+        if(error !== null){
             if(filePath.endsWith(".qm")){
                 console.error("Could not load file " + filePath + ": QTranslator.load() expects a TS file as argument, but a QM file was given.");
             }
             else{
-                console.error("Could not load file " + filePath + ": Content is not valid XML.");
+                console.error("Could not load file " + filePath + ": Content is not valid XML: " + error);
             }
             return false;
         }
