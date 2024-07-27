@@ -22,6 +22,7 @@ bool JsOrPhpCode::parse(){
                             BEFORE_SECOND_ARG = 3,
                             AFTER_SECOND_ARG = 4;
         int trArgPosition = NOT_IN_TR_FUNCTION;
+        QList<int> templateLiteralDepth;    //The key represents how many template literals are in, and the value represents how many curly braces we have. So for example if we're `${if(true){`${here}`}}`, it will be [1, 0]: we're inside 1 curly brace in the outer remplate literal and 0 in the inner template literal.
         TsFile::Translation currentTranslation;
 
         //Sometimes mid(i, 1) is used instead of [i] in case it's out of bounds
@@ -152,6 +153,12 @@ bool JsOrPhpCode::parse(){
                     this->_lastErrorPos = offset + i;
                     return false;
                 }
+                else if(currentStringDelimiter == "`" && codePortion.mid(i, 2) == "${"){
+                    templateLiteralDepth.append(0);
+                    currentStringDelimiter.clear();
+                    currentString.clear();
+                    i++;    //It will be automatically incremented once by the for loop, but it needs to be incremented twice because there are two characters in "${"
+                }
                 else{
                     currentString.append(codePortion[i]);
 
@@ -162,6 +169,22 @@ bool JsOrPhpCode::parse(){
                     }
                 }
                 continue;
+            }
+            else if(templateLiteralDepth.size() > 0){
+                if(codePortion[i] == '}'){
+                    if(templateLiteralDepth.last() == 0){
+                        templateLiteralDepth.removeLast();
+                        currentStringDelimiter = "`";
+                    }
+                    else{
+                        templateLiteralDepth.last()--;
+                    }
+                    continue;
+                }
+                else if(codePortion[i] == '{'){
+                    templateLiteralDepth.last()++;
+                    continue;
+                }
             }
 
             //Start of strings
