@@ -1,6 +1,6 @@
 <?php
 /*
-* qtranslator.php version 1.0.0 by Gustav Lindberg
+* qtranslator.php version 1.0.1 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
@@ -218,7 +218,7 @@ class QTranslator extends QObject{
         case "xh":    //Xhosa
         case "yi":    //Yiddish
         case "zu":    //Zulu
-            return $n === 1 ? 1 : 0;
+            return $n === 1 ? 0 : 1;
         case "":      //Unknown language
         case "bo":    //Tibetan
         case "dz":    //Dzongkha
