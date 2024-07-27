@@ -1,5 +1,5 @@
 /*
-* qtranslator.js version 1.0.4 by Gustav Lindberg
+* qtranslator.js version 1.0.5 by Gustav Lindberg
 * https://github.com/GustavLindberg99/QtLinguistWeb
 */
 
@@ -238,7 +238,7 @@ export class QTranslator extends QObject{
         case "xh":    //Xhosa
         case "yi":    //Yiddish
         case "zu":    //Zulu
-            return n === 1 ? 1 : 0;
+            return n === 1 ? 0 : 1;
         case "":      //Unknown language
         case "bo":    //Tibetan
         case "dz":    //Dzongkha
